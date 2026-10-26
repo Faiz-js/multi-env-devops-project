@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+
+  # db:
+  #   image: cassandra:4.1
+  #   ports:
+  #     - "9042:9042"
+  #   volumes:
+  #     - cassandra-data:/var/lib/cassandra
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "cqlsh -e 'SHOW HOST'"]
+  #     interval: 15s
+  #     timeout: 10s
+  #     retries: 10
+  #     start_period: 40s
+
+  cassandra-staging:
+    image: cassandra:4.1
+    ports:
+      - "9043:9042"
+    volumes:
+      - cassandra-staging-data:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -e 'SHOW HOST'"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 40s
+
+  # cassandra-production:
+  #   image: cassandra:4.1
+  #   ports:
+  #     - "9044:9042"
+  #   volumes:
+  #     - cassandra-production-data:/var/lib/cassandra
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "cqlsh -e 'SHOW HOST'"]
+  #     interval: 15s
+  #     timeout: 10s
+  #     retries: 10
+  #     start_period: 40s
+
+volumes:
+  cassandra-staging-data:
+  # cassandra-production-data:

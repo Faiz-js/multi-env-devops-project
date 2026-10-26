@@ -1,0 +1,40 @@
+# Dependencies (installed fresh inside the container via `npm ci`)
+node_modules
+
+# Local build output (ensures container builds fresh dist folder)
+dist
+dist-ssr
+
+# Docker configuration files
+Dockerfile
+.dockerignore
+docker-compose*.yml
+.docker
+
+# Git repository metadata
+.git
+.gitignore
+
+# Environment & local secret files
+.env*.local
+.env.development
+.env.test
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE / Editor configuration
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating System files
+.DS_Store
+Thumbs.db
