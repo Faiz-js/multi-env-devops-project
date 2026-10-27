@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4173:4173"
+    env_file:
+      - .env.staging
     depends_on:
       - backend
     restart: always
@@ -17,4 +19,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    env_file:
+      - .env.staging
     restart: always
