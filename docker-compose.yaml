@@ -8,7 +8,7 @@ services:
     ports:
       - "4173:4173"
     env_file:
-      - .env.staging
+      - ./frontend/.env.staging
     depends_on:
       - backend
     restart: always
@@ -20,5 +20,5 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - .env.staging
+      - ./backend/.env.staging
     restart: always
