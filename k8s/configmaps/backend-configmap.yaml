@@ -4,7 +4,7 @@ metadata:
   name: backend-configmap
   namespace: production
 data:
-  CONTACTPOINTS: "database-service"
+  CONTACTPOINTS: "db-headless"
   LOCALDATACENTER: "datacenter1"
   KEYSPACE: "todo_application_keyspace"
   PORT: "5000"
