@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
         - name: todo-frontend-container
-          image: faizjs/todo-frontend:v1
+          image: faizjs/todo-frontend:v4
           ports:
             - containerPort: 4173
-          envFrom:
-            - configMapRef: 
-                name: frontend-configmap
+          # envFrom:
+          #   - configMapRef:
+          #       name: frontend-configmap
