@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-configmap
+  namespace: production
+data:
+  VITE_BACKEND_URL: "http://backend-service:5000"
