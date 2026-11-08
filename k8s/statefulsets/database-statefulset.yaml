@@ -19,6 +19,13 @@ spec:
           image: cassandra:4.1
           ports:
             - containerPort: 9042
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "2Gi"
+              cpu: "1"
           volumeMounts:
             - name: db-data
               mountPath: /var/lib/cassandra/data
