@@ -10,7 +10,7 @@ services:
     env_file:
       - ./frontend/.env.staging
     environment:
-      - NODE_ENV: staging
+      - NODE_ENV=staging
     depends_on:
       - backend
     restart: always
@@ -24,7 +24,7 @@ services:
     env_file:
       - ./backend/.env.staging
     environment:
-      - NODE_ENV: staging
+      - NODE_ENV=staging
     depends_on:
       - db
     restart: always
@@ -47,9 +47,6 @@ services:
     volumes:
       - ./schema:/docker-entrypoint-initdb.d
       - db_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: staging_password
-      MYSQL_DATABASE: todo_application
     restart: always
 
 volumes:
