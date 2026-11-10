@@ -1,11 +1,11 @@
-const cassandraClient = require("./db.js");
+const db = require("./db.js");
 
 const connectToDB = async () => {
   try {
-    await cassandraClient.connect();
-    console.log("✅ Connected to cassandraDB successfull");
+    await db.query("SELECT 1");
+    console.log("✅ Connected to MySQL database successfully");
   } catch (error) {
-    console.error("❌ Error in connecting to cassandra: ", error);
+    console.error("❌ Error in connecting to MySQL: ", error);
   }
 };
 
