@@ -26,7 +26,8 @@ services:
     environment:
       - NODE_ENV=staging
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
 
   nginx:
@@ -44,9 +45,18 @@ services:
     image: mysql:9
     ports:
       - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: staging_password
+      MYSQL_DATABASE: todo_application
     volumes:
       - ./schema:/docker-entrypoint-initdb.d
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pstaging_password"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
     restart: always
 
 volumes:
