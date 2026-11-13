@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo-backend-container
-          image: faizjs/todo-backend:v1
+          image: faizjs/todo-backend:v2
           ports:
             - containerPort: 5000
           envFrom:

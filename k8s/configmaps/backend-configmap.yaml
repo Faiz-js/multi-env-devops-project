@@ -4,8 +4,9 @@ metadata:
   name: backend-configmap
   namespace: production
 data:
-  CONTACTPOINTS: "db-headless"
-  LOCALDATACENTER: "datacenter1"
-  KEYSPACE: "todo_application_keyspace"
+  DB_HOST: "db-headless"
+  DB_USER: "root"
+  DB_NAME: "todo_application"
+  DB_PORT: "3306"
   PORT: "5000"
   TODO_TABLE: "todo_table"
