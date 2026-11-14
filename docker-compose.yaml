@@ -2,9 +2,7 @@ version: "3.9"
 
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.staging
+    image: faizjs/todo-frontend:${TAG_NAME} 
     ports:
       - "4173:4173"
     env_file:
@@ -16,9 +14,7 @@ services:
     restart: always
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: faizjs/todo-backend:${TAG_NAME}
     ports:
       - "5000:5000"
     env_file:
