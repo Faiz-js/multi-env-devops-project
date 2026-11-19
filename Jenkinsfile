@@ -55,7 +55,7 @@ pipeline {
 
 		stage("build frontend") {
 			steps {
-				sh "docker build -f Dockerfile.staging -t faizjs/todo-frontend:${BUILD_NUMBER} ./frontend"
+				sh "docker build -f ./frontend/Dockerfile.staging -t faizjs/todo-frontend:${BUILD_NUMBER} ./frontend"
 			}
 		}
 
