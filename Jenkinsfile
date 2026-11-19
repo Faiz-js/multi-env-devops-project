@@ -19,12 +19,14 @@ pipeline {
 
 		stage("checkout code") {
 			steps {
+				echo "Pulling code from github"
 				checkout scm
 			}			
 		}
 
 		stage("install frontend dependencies") {
 			steps {
+				echo "Installing frontend dependencies"
 				dir("frontend") {
 					sh "npm install"	
 				}
@@ -33,6 +35,7 @@ pipeline {
 
 		stage("install backend dependencies") {
 			steps {
+				echo "Installing backend dependencies"
 				dir("backend") {
 					sh "npm install"
 				}
@@ -41,6 +44,7 @@ pipeline {
 
 		stage("docker login") {
 			steps {
+				echo "Login to docker hub using credentials"
 				withCredentials([
 					usernamePassword(
 						credentialsId: "docker-hub-credentials",
@@ -55,30 +59,35 @@ pipeline {
 
 		stage("build frontend") {
 			steps {
-				sh "docker build -f ./frontend/Dockerfile.staging -t faizjs/todo-frontend:${BUILD_NUMBER} ./frontend"
+				echo "Building frontend image"
+				sh "docker build -t faizjs/todo-frontend:${BUILD_NUMBER} ./frontend"
 			}
 		}
 
 		stage("build backend") {
 			steps {
+				echo "Building backend image"
 				sh "docker build -t faizjs/todo-backend:${BUILD_NUMBER} ./backend"
 			}
 		}
 
 		stage("push frontend image") {
 			steps {
+				echo "Pushing frontend image to docker hub"
 				sh "docker push faizjs/todo-frontend:${BUILD_NUMBER}"
 			}
 		}
 
 		stage("push backend image") {
 			steps {
+				echo "Pushing backend image to docker hub"
 				sh "docker push faizjs/todo-backend:${BUILD_NUMBER}"
 			}
 		}
 
 		stage("run docker compose") {
 			steps {
+				echo "Running docker compose command"
 				sh '''
 					export TAG_NAME="${BUILD_NUMBER}"
 					cp /etc/staging-env/frontend/.env.staging ./frontend/.env.staging 
