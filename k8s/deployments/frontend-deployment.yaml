@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: todo-frontend-container
+          image: faizjs/todo-frontend:v4
+          ports:
+            - containerPort: 4173
+          # envFrom:
+          #   - configMapRef:
+          #       name: frontend-configmap
