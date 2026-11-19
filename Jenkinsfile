@@ -76,7 +76,7 @@ pipeline {
 		stage("run docker compose") {
 			steps {
 				sh '''
-					export IMAGE_TAG="${BUILD_NUMBER}"
+					export TAG_NAME="${BUILD_NUMBER}"
 					docker compose down
 					docker compose up --build -d
 				'''
