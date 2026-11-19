@@ -81,6 +81,8 @@ pipeline {
 			steps {
 				sh '''
 					export TAG_NAME="${BUILD_NUMBER}"
+					cp /home/ubuntu/projects/multi-env-devops-projects/frontend/.env.staging ./frontend/.env.staging 
+					cp /home/ubuntu/projects/multi-env-devops-projects/backend/.env.staging ./backend/.env.staging 
 					docker compose down
 					docker compose up --build -d
 				'''
